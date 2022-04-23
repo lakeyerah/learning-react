@@ -2,8 +2,8 @@ import './Bubbles.css';
 
 export const Bubbles = props => {
     return (
-        <div className='bubble'>
-           <p> testing bubbles should become something like this.props.value</p>
+        <div className='bubble' onClick={() => props.delete(props.statement)}>
+           <p> {props.statement} </p>
         </div>
     );
 }

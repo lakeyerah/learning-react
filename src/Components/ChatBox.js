@@ -10,13 +10,21 @@ export const ChatBox = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [va, updateChat] = useState();
+    // const [va, updateChat] = useState();
     //const [] = useState();
+
+    const [conversation, setConversation] = useState([])
+    const [statement, setStatement] = useState('')
+
+    const removeStatement = s => {
+        setConversation(conversation.filter(c => c != s))
+    }
   
 
-   const setConversation = (event) =>{
+   const submit = (event) =>{
        event.preventDefault();
-       console.log("lala the engineer");
+        setConversation([...conversation, statement])
+        setStatement('')
     }
 
     useEffect(() => {
@@ -42,13 +50,15 @@ export const ChatBox = () => {
                 <Modal.Title>Interviewing Scheduling Portal</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                    <Bubbles></Bubbles>
+                    {
+                        conversation.map(s => (<Bubbles statement={s} delete={removeStatement}/>))
+                    }
 
             </Modal.Body>
             <Modal.Footer>
                 <InputGroup>
-                        <FormControl as="textarea" value={va} onChange={(e) => updateChat(e.target.value)}/>
-                        <Button variant="outline-secondary" type='submit' value = 'submit' onClick={() => { setConversation() }}>change to image</Button>
+                        <FormControl as="textarea" value={statement} onChange={(e) => setStatement(e.target.value)}/>
+                        <Button variant="outline-secondary" type='submit' value = 'submit' onClick={submit} >change to image</Button>
                     </InputGroup>
             </Modal.Footer>
             </Modal>
