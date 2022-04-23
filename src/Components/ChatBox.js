@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './ChatBox.css';
 import { Bubbles } from './Bubbles.js'
 
-//The chatBox is essential a modal. Would probably rename for reusability purposes
+//The chatBox is essential a modal. Would probably rename for reusability purposes  ttrying 
 export const ChatBox = () => {
     const [show, setShow] = useState(false);
 
